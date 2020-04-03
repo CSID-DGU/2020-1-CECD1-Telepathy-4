@@ -4,7 +4,7 @@
 ## 프로젝트 개요
 구글 피트니스를 이용한 개인 건강 분석 서비스 개발
 
-##팀원
+## 팀원
 - 팀장: [고노윤](https://github.com/nohyoonko)
 - 팀원: [이주영](https://github.com/1122jinny)
 - 팀원: [오유민](https://github.com/ym-o)
