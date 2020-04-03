@@ -1,37 +1,11 @@
-## Welcome to GitHub Pages
+# 2020-1-CECD1-Telepathy-4
+컴퓨터공학종합설계1 01분반 텔레파시
 
-You can use the [editor on GitHub](https://github.com/CSID-DGU/2020-1-CECD1-Telepathy-4/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+## 프로젝트 개요
+구글 피트니스를 이용한 개인 건강 분석 서비스 개발
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/CSID-DGU/2020-1-CECD1-Telepathy-4/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+##팀원
+- 팀장: [고노윤](https://github.com/nohyoonko)
+- 팀원: [이주영](https://github.com/1122jinny)
+- 팀원: [오유민](https://github.com/ym-o)
+- 팀원: [유현지](https://github.com/LUV2KUIT)
