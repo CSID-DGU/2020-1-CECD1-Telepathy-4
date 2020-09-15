@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">BetterFit</string>
+    <string name="title_home">홈</string>
+    <string name="title_statistics">통계</string>
+    <string name="title_contents">콘텐츠</string>
+    <string name="title_friends">친구</string>
 </resources>
