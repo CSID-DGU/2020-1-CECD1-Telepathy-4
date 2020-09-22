@@ -4,19 +4,123 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.statistics.StatisticsFragment">
+    tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/text_statistics"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/day"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center|left"
+                android:background="@drawable/greenbtn"
+                android:text="@string/day"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/week"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center|left"
+                android:layout_marginLeft="90dp"
+                android:background="@drawable/graybtn"
+                android:text="@string/week"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/month"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center|right"
+                android:layout_marginRight="90dp"
+                android:background="@drawable/graybtn"
+                android:text="@string/month"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/year"
+                android:layout_width="70dp"
+                android:layout_height="35dp"
+                android:layout_gravity="center|right"
+                android:background="@drawable/graybtn"
+                android:text="@string/year"
+                android:textColor="@color/colorBlack"
+                android:textSize="15sp" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/prev"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center|left"
+                android:background="@drawable/prev" />
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/next"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center|right"
+                android:background="@drawable/next" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginTop="90dp">
+
+            <TextView
+                android:id="@+id/daystep"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text=""
+                android:textColor="@color/colorBlack"
+                android:textSize="25sp" />
+
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="140dp">
+
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/daychart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                android:padding="5dp" />
+
+        </FrameLayout>
+
+    </FrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
