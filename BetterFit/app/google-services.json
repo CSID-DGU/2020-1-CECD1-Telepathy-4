@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "453384902193",
+    "firebase_url": "https://fitness-bcc53.firebaseio.com",
+    "project_id": "fitness-bcc53",
+    "storage_bucket": "fitness-bcc53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:453384902193:android:6ac8d6e01e88ddc3912710",
+        "android_client_info": {
+          "package_name": "com.example.betterfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "453384902193-bpf3je2dt1rm08qtini42j76elfh6kg3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.betterfit",
+            "certificate_hash": "5e2a8570f7a076fc2ce8bcb3a2e1ad3477e09724"
+          }
+        },
+        {
+          "client_id": "453384902193-ovhvgmb1kln106o37d48evfqkpnbs82f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCD_fGlHNM-youwExQaTgPAxK5HD3IxcsU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "453384902193-ovhvgmb1kln106o37d48evfqkpnbs82f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
