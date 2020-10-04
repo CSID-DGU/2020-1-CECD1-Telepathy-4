@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/googleLoginFragment"
         android:name="com.example.betterfit.ui.GoogleLoginFragment"
-        android:label="fragment_google_login"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_google_login" >
     </fragment>
 
