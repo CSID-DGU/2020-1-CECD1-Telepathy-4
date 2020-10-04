@@ -18,7 +18,7 @@
 
 ## 프로젝트 주요 내용
 ### 안드로이드
-- open API : Google Fit API 사용
+- Open API : Google Fit API 사용
 - 'Google Fitness'와 연동
 - 일/주/월/년 통계 및 나와의 경쟁
 ### 데이터 분석 & 활동 패턴 분류
