@@ -1,6 +1,6 @@
 #Session에서 work space 변경 후 실행하기
 #no outlier : 218 data
-x<-read.csv('all_data_no_outlier_HR_new.csv', header = TRUE, stringsAsFactors = FALSE, na.strings = "")
+x<-read.csv('final_no_outlier_forHR.csv', header = TRUE, stringsAsFactors = FALSE, na.strings = "")
 names(x)
 
 x$name<-NULL # name column 없애기
@@ -38,7 +38,7 @@ clusters2
 
 
 setwd('C:/Users/oym91/OneDrive/Desktop/graph_all')
-write.csv(clusters1, file="no_outlier_scaled_12.csv", row.names = FALSE)
+write.csv(clusters1, file="final_no_outlier_scaled_12.csv", row.names = FALSE)
 
 setwd('C:/Users/oym91/OneDrive/Desktop/graph_all')
-write.csv(clusters2, file="no_outlier_no_scaled_12.csv", row.names = FALSE)
+write.csv(clusters2, file="final_no_outlier_no_scaled_12.csv", row.names = FALSE)
