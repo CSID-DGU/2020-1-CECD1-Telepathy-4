@@ -191,7 +191,7 @@ public class StatisticsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if(cal.get(Calendar.YEAR) == check.get(Calendar.YEAR)
-                        && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
+                            && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
                             && cal.get(Calendar.DATE) == check.get(Calendar.DATE)) {
                     }
                     else {
