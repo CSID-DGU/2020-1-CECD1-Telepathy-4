@@ -298,46 +298,6 @@ public class StatisticsFragment extends Fragment {
     }
 
     /***
-     * Method to read current days total step count.
-     */
-    @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-    private void readDailyTotalSteps() {
-        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()),
-                mFitnessOptions);
-
-        Fitness.getHistoryClient(getActivity(), account)
-                .readDailyTotal(DataType.TYPE_STEP_COUNT_DELTA)
-                .addOnSuccessListener(new OnSuccessListener<DataSet>() {
-                    @Override public void onSuccess(DataSet dataSet) {
-
-                        List<DataPoint> dataPoints = dataSet.getDataPoints();
-                        String dailyTotalStepCount = "0";
-                        for (DataPoint dp : dataPoints) {
-                            List<Field> fields = dp.getDataType().getFields();
-                            for (Field field : fields) {
-                                //Log.d(TAG, "Field2: " + field.getName() + " Value2: " + dp.getValue(field));
-                                dailyTotalStepCount = dp.getValue(field).toString();
-                            }
-                        }
-
-                        //statisticsViewModel.addDailyStepCount(new Date(System.currentTimeMillis()), dailyTotalStepCount);
-                        // Add the data
-                        if (statisticsViewModel != null) {
-                            statisticsViewModel.addDailyStepCount(new Date(System.currentTimeMillis()), dailyTotalStepCount);
-                        }
-
-                        //buildChart();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override public void onFailure(@NonNull Exception e) {
-                        //Log.d(TAG, "OnFailure()", e);
-                    }
-                });
-    }
-
-    /***
      * Method to get the data from the viewmodel and then build the TableLayout.
      */
     private void buildChart(Calendar cal) {
