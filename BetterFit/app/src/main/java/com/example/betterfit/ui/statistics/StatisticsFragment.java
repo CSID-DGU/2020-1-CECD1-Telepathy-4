@@ -107,22 +107,11 @@ public class StatisticsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
-                // Google Fit access granted. Could remove this code, but it's nice to have when checking if
-                // the permissions were granted.
-            }
-        }
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override public void onResume() {
         super.onResume();
 
-        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()),
-                mFitnessOptions);
+        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(getActivity(), mFitnessOptions);
 
         final DateFormat mFormat = new SimpleDateFormat("yyyy.M.d.EE");
         final DateFormat mFormat2 = new SimpleDateFormat("yyyy.M");
@@ -148,12 +137,19 @@ public class StatisticsFragment extends Fragment {
         monthBtn = (Button) getView().findViewById(R.id.month);
         yearBtn = (Button) getView().findViewById(R.id.year);
 
+<<<<<<< HEAD
         // Check Google Signin Permission
         if (!GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
             GoogleSignIn.requestPermissions(this, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, account,
                     mFitnessOptions);
         } else {
             chart.removeAllViews();
+=======
+        int flag = 0; // 0:today, 1:prev, 2:next
+        // Check Google Fit Permission
+        if (GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
+            daychart.removeAllViews();
+>>>>>>> 277fec0247ed33dc56c7c4d1c8d0cb5eb4ba5610
 
             cal.add(Calendar.DATE, -1);
             getDailyStepCountsFromGoogleFit1(mFitnessOptions, cal, 1);
@@ -188,7 +184,7 @@ public class StatisticsFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if(cal.get(Calendar.YEAR) == check.get(Calendar.YEAR)
-                        && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
+                            && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
                             && cal.get(Calendar.DATE) == check.get(Calendar.DATE)) {
                     }
                     else {
@@ -519,6 +515,9 @@ public class StatisticsFragment extends Fragment {
                 }
             });
         }
+        else {
+            Log.w(TAG, "Google Fit Permission failed");
+        }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -570,7 +569,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                getActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -608,7 +607,11 @@ public class StatisticsFragment extends Fragment {
 
                             // Update current day step count
                             //readDailyTotalSteps();
+<<<<<<< HEAD
                             buildChart1(cal);
+=======
+                            buildChart(cal);
+>>>>>>> 277fec0247ed33dc56c7c4d1c8d0cb5eb4ba5610
 
                         }
                     }
