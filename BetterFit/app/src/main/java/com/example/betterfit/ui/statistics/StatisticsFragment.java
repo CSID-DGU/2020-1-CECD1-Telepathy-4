@@ -119,22 +119,11 @@ public class StatisticsFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
     }
 
-    @Override public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
-                // Google Fit access granted. Could remove this code, but it's nice to have when checking if
-                // the permissions were granted.
-            }
-        }
-    }
-
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override public void onResume() {
         super.onResume();
 
-        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()),
-                mFitnessOptions);
+        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(getActivity(), mFitnessOptions);
 
         final DateFormat mFormat = new SimpleDateFormat("yyyy.M.d.EE");
         SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
@@ -154,11 +143,8 @@ public class StatisticsFragment extends Fragment {
         day_review3 = (TextView) getView().findViewById(R.id.day_review3);
 
         int flag = 0; // 0:today, 1:prev, 2:next
-        // Check Google Signin Permission
-        if (!GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
-            GoogleSignIn.requestPermissions(this, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, account,
-                    mFitnessOptions);
-        } else {
+        // Check Google Fit Permission
+        if (GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
             daychart.removeAllViews();
 
             cal.add(Calendar.DATE, -1);
@@ -202,6 +188,9 @@ public class StatisticsFragment extends Fragment {
                 }
             });
 
+        }
+        else {
+            Log.w(TAG, "Google Fit Permission failed");
         }
     }
 
@@ -247,7 +236,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                getActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)

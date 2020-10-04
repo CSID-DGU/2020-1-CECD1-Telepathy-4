@@ -43,10 +43,16 @@ import java.util.concurrent.Executor;
  */
 public class GoogleLoginFragment extends Fragment {
     private static final String TAG = GoogleLoginFragment.class.getSimpleName();
+    private static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
+
+    private final FitnessOptions mFitnessOptions = FitnessOptions.builder()
+            .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
+            .build();
 
     public GoogleLoginFragment() {
         // Required empty public constructor
@@ -130,7 +136,15 @@ public class GoogleLoginFragment extends Fragment {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
                 firebaseAuthWithGoogle(account.getIdToken());
-                Navigation.findNavController(getView()).navigate(R.id.navigation_home);
+                // Check Google Fit Permission
+                if (!GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
+                    GoogleSignIn.requestPermissions(this, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, account,
+                            mFitnessOptions);
+                }
+                else {
+                    Navigation.findNavController(getView()).navigate(R.id.navigation_home);
+                }
+
             } catch (ApiException e) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
