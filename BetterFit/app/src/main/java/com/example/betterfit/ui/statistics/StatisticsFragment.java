@@ -137,19 +137,9 @@ public class StatisticsFragment extends Fragment {
         monthBtn = (Button) getView().findViewById(R.id.month);
         yearBtn = (Button) getView().findViewById(R.id.year);
 
-<<<<<<< HEAD
-        // Check Google Signin Permission
-        if (!GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
-            GoogleSignIn.requestPermissions(this, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, account,
-                    mFitnessOptions);
-        } else {
-            chart.removeAllViews();
-=======
-        int flag = 0; // 0:today, 1:prev, 2:next
         // Check Google Fit Permission
         if (GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
-            daychart.removeAllViews();
->>>>>>> 277fec0247ed33dc56c7c4d1c8d0cb5eb4ba5610
+            chart.removeAllViews();
 
             cal.add(Calendar.DATE, -1);
             getDailyStepCountsFromGoogleFit1(mFitnessOptions, cal, 1);
@@ -607,11 +597,7 @@ public class StatisticsFragment extends Fragment {
 
                             // Update current day step count
                             //readDailyTotalSteps();
-<<<<<<< HEAD
                             buildChart1(cal);
-=======
-                            buildChart(cal);
->>>>>>> 277fec0247ed33dc56c7c4d1c8d0cb5eb4ba5610
 
                         }
                     }
