@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".ui.statistics.StatisticsFragment">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -81,7 +81,7 @@
                 android:layout_gravity="center"
                 android:text=""
                 android:textColor="@color/colorBlack"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/next"
@@ -97,7 +97,7 @@
             android:layout_marginTop="90dp">
 
             <TextView
-                android:id="@+id/daystep"
+                android:id="@+id/step_count"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -113,7 +113,7 @@
             android:layout_marginTop="135dp">
 
             <com.github.mikephil.charting.charts.BarChart
-                android:id="@+id/daychart"
+                android:id="@+id/chart"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_gravity="center"
@@ -130,7 +130,7 @@
             android:padding="10dp">
 
             <TextView
-                android:id="@+id/day_review1"
+                android:id="@+id/review1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=""
@@ -145,7 +145,7 @@
                 android:background="@color/colorGray" />
 
             <TextView
-                android:id="@+id/day_review2"
+                android:id="@+id/review2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -164,7 +164,7 @@
                 android:layout_centerVertical="true" />
 
             <TextView
-                android:id="@+id/day_review3"
+                android:id="@+id/review3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="90dp"
