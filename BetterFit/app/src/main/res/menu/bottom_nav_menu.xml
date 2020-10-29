@@ -16,4 +16,9 @@
         android:icon="@drawable/ic_inbox_black_24dp"
         android:title="@string/title_contents" />
 
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="@string/title_profile" />
+
 </menu>
