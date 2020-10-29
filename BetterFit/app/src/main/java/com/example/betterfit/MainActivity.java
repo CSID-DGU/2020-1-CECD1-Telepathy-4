@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDestinationChanged(@NonNull NavController controller,
                                              @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if(destination.getId() == R.id.googleLoginFragment) {
+                if(destination.getId() == R.id.profileFragment || destination.getId() == R.id.googleLoginFragment) {
                     bottomNav.setVisibility(View.GONE);
                 } else {
                     bottomNav.setVisibility(View.VISIBLE);
