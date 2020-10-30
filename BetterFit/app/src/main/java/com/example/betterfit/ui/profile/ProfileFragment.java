@@ -1,28 +1,25 @@
-package com.example.betterfit.ui.friends;
+package com.example.betterfit.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.betterfit.R;
 
-public class FriendsFragment extends Fragment {
+public class ProfileFragment extends Fragment {
 
-    private FriendsViewModel friendsViewModel;
+    private ProfileViewModel profileViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        friendsViewModel =
-                ViewModelProviders.of(this).get(FriendsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_friends, container, false);
+        profileViewModel =
+                ViewModelProviders.of(this).get(ProfileViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_profile, container, false);
 
         return root;
     }

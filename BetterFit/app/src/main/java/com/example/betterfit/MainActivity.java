@@ -68,8 +68,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_contents:
                     Navigation.findNavController(activity, R.id.nav_host_fragment).navigate(R.id.navigation_contents);
                     break;
-                case R.id.navigation_friends:
-                    Navigation.findNavController(activity, R.id.nav_host_fragment).navigate(R.id.navigation_friends);
+                case R.id.profileFragment:
+                    Navigation.findNavController(activity, R.id.nav_host_fragment).navigate(R.id.profileFragment);
                     break;
             }
             return false;
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onDestinationChanged(@NonNull NavController controller,
                                              @NonNull NavDestination destination, @Nullable Bundle arguments) {
-                if(destination.getId() == R.id.googleLoginFragment) {
+                if(destination.getId() == R.id.profileFragment || destination.getId() == R.id.googleLoginFragment) {
                     bottomNav.setVisibility(View.GONE);
                 } else {
                     bottomNav.setVisibility(View.VISIBLE);
