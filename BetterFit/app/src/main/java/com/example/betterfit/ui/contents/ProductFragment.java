@@ -24,18 +24,16 @@ import com.example.betterfit.MainActivity;
 import com.example.betterfit.R;
 import com.example.betterfit.ui.statistics.StatisticsViewModel;
 
+
 import java.util.Calendar;
 
-public class ContentsFragment extends Fragment {
+public class ProductFragment extends Fragment {
     private TextView hashtag1, hashtag2, hashtag3, title1, title2, title3;
     private Button videoBtn, newsBtn, productBtn;
     private View videoBar, newsBar, productBar;
 
-    private static final String API_KEY = "";
-    private static String VIDEO_ID = "";
-
     //private ContentsViewModel contentsViewModel;
-    public ContentsFragment() {
+    public ProductFragment() {
 
     }
 
@@ -43,23 +41,22 @@ public class ContentsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         //contentsViewModel = new ViewModelProvider(this).get(ContentsViewModel.class);
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_contents, container, false);
-
-        // videoBtn = (Button) view.findViewById(R.id.videoBtn); // Scroll up
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_product, container, false);
+        videoBtn = (Button) view.findViewById(R.id.videoBtn);
         newsBtn = (Button) view.findViewById(R.id.newsBtn);
-        productBtn = (Button) view.findViewById(R.id.productBtn);
+        //productBtn = (Button) view.findViewById(R.id.productBtn); // Scroll up
+
+        videoBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_product_to_navigation_contents);
+            }
+        });
 
         newsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_contents_to_navigation_news);
-            }
-        });
-
-        productBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_contents_to_navigation_product);
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_product_to_navigation_news);
             }
         });
 

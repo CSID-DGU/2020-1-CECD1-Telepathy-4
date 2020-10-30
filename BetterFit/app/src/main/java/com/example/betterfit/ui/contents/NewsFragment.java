@@ -24,18 +24,14 @@ import com.example.betterfit.MainActivity;
 import com.example.betterfit.R;
 import com.example.betterfit.ui.statistics.StatisticsViewModel;
 
-import java.util.Calendar;
 
-public class ContentsFragment extends Fragment {
+public class NewsFragment extends Fragment {
     private TextView hashtag1, hashtag2, hashtag3, title1, title2, title3;
     private Button videoBtn, newsBtn, productBtn;
     private View videoBar, newsBar, productBar;
 
-    private static final String API_KEY = "";
-    private static String VIDEO_ID = "";
-
     //private ContentsViewModel contentsViewModel;
-    public ContentsFragment() {
+    public NewsFragment() {
 
     }
 
@@ -43,23 +39,23 @@ public class ContentsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
         //contentsViewModel = new ViewModelProvider(this).get(ContentsViewModel.class);
-        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_contents, container, false);
+        ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_news, container, false);
 
-        // videoBtn = (Button) view.findViewById(R.id.videoBtn); // Scroll up
-        newsBtn = (Button) view.findViewById(R.id.newsBtn);
+        videoBtn = (Button) view.findViewById(R.id.videoBtn);
+        // newsBtn = (Button) view.findViewById(R.id.newsBtn); // Scroll up
         productBtn = (Button) view.findViewById(R.id.productBtn);
 
-        newsBtn.setOnClickListener(new View.OnClickListener() {
+        videoBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_contents_to_navigation_news);
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_news_to_navigation_contents);
             }
         });
 
         productBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Navigation.findNavController(getView()).navigate(R.id.action_navigation_contents_to_navigation_product);
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_news_to_navigation_product);
             }
         });
 
