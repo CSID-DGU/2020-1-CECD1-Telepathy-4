@@ -32,7 +32,14 @@
         android:id="@+id/navigation_home"
         android:name="com.example.betterfit.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_statistics"
+            app:destination="@id/navigation_statistics" />
+        <action
+            android:id="@+id/action_navigation_home_to_navigation_contents"
+            app:destination="@id/navigation_contents" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_statistics"
@@ -43,7 +50,40 @@
     <fragment
         android:id="@+id/navigation_contents"
         android:name="com.example.betterfit.ui.contents.ContentsFragment"
-        android:label="@string/title_contents"
-        tools:layout="@layout/fragment_contents" />
+        android:label="콘텐츠"
+        tools:layout="@layout/fragment_contents" >
+        <action
+            android:id="@+id/action_navigation_contents_to_navigation_product"
+            app:destination="@id/navigation_product" />
+        <action
+            android:id="@+id/action_navigation_contents_to_navigation_news"
+            app:destination="@id/navigation_news" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_news"
+        android:name="com.example.betterfit.ui.contents.NewsFragment"
+        android:label="뉴스"
+        tools:layout="@layout/fragment_news" >
+        <action
+            android:id="@+id/action_navigation_news_to_navigation_contents"
+            app:destination="@id/navigation_contents" />
+        <action
+            android:id="@+id/action_navigation_news_to_navigation_product"
+            app:destination="@id/navigation_product" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_product"
+        android:name="com.example.betterfit.ui.contents.ProductFragment"
+        android:label="제품"
+        tools:layout="@layout/fragment_product" >
+        <action
+            android:id="@+id/action_navigation_product_to_navigation_news"
+            app:destination="@id/navigation_news" />
+        <action
+            android:id="@+id/action_navigation_product_to_navigation_contents"
+            app:destination="@id/navigation_contents" />
+    </fragment>
 
 </navigation>

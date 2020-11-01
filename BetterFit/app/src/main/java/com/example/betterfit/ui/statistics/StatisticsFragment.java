@@ -97,7 +97,7 @@ public class StatisticsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
         statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
 
-        chart = (BarChart)view.findViewById(R.id.chart);
+        chart = (BarChart)view.findViewById(R.id.chart2);
         step_count = (TextView)view.findViewById(R.id.step_count);
 
         return view;
@@ -448,22 +448,13 @@ public class StatisticsFragment extends Fragment {
                     monthBtn.setBackgroundResource(R.drawable.graybtn);
                     yearBtn.setBackgroundResource(R.drawable.greenbtn);
 
+                    prevBtn.setEnabled(true);
+                    nextBtn.setEnabled(true);
+                    date.setTextColor(colorBlack);
+                    step_count.setVisibility(View.VISIBLE);
+
                     chart.removeAllViews();
-                    date.setText("년 통계를 위한 데이터가 부족합니다.");
-                    //prevBtn.setVisibility(View.INVISIBLE);
-                    //nextBtn.setVisibility(View.INVISIBLE);
-                    prevBtn.setEnabled(false);
-                    nextBtn.setEnabled(false);
-                    date.setTextColor(colorGray);
-                    step_count.setVisibility(View.INVISIBLE);
-                    chart.clear();
-                    //review1.setText("데이터 부족");
-                    review1.setText("");
-                    review2.setText("");
-                    review3.setText("");
-                    progressBar1.setProgress(0);
-                    progressBar2.setProgress(0);
-                    /*cal.setTime(new Date());
+                    cal.setTime(new Date());
                     cal2.setTime(cal.getTime());
                     cal2.add(Calendar.YEAR, -1);
                     cal2.add(Calendar.DATE, +1);
@@ -484,63 +475,63 @@ public class StatisticsFragment extends Fragment {
                     getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 0); // this week
                     cal.add(Calendar.YEAR, +1);
                     cal.add(Calendar.DATE, -1);
-                    Log.d(TAG, "3-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());*/
+                    Log.d(TAG, "3-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
 
-//                    prevBtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            //cal2.setTime(cal.getTime());
-//                            cal2.add(Calendar.YEAR, -1);
-//                            Log.d(TAG, "4. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//
-//                            cal.add(Calendar.YEAR, -2);
-//                            cal.add(Calendar.DATE, +1);
-//                            Log.d(TAG, "5-1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime()); // last x 2 week
-//                            getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1);
-//                            try {
-//                                Thread.sleep(20);
-//                            } catch (InterruptedException e) {
-//                                e.printStackTrace();
-//                            }
-//                            Log.d(TAG, "5-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                            cal.add(Calendar.YEAR, +2);
-//                            Log.d(TAG, "6. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                            cal.add(Calendar.DATE, -1);
-//                            date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
-//                            cal.add(Calendar.DATE, +1);
-//                            getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1); // last week
-//                            Log.d(TAG, "7. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                            cal.add(Calendar.YEAR, +1);
-//                            cal.add(Calendar.DATE, -1);
-//                            Log.d(TAG, "8. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                        }
-//                    });
+                    prevBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //cal2.setTime(cal.getTime());
+                            cal2.add(Calendar.YEAR, -1);
+                            Log.d(TAG, "4. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
 
-//                    nextBtn.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//
-//                            //cal2.add(Calendar.DATE, +1);
-//                            Log.d(TAG, "9. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//
-//                            if(cal.get(Calendar.YEAR) == check.get(Calendar.YEAR)
-//                                    && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
-//                                    && cal.get(Calendar.DATE) == check.get(Calendar.DATE)) {
-//                            }
-//                            else {
-//                                //cal2.setTime(cal.getTime());
-//                                cal2.add(Calendar.YEAR, +1);
-//                                cal.add(Calendar.YEAR, +1);
-//                                cal.add(Calendar.DATE, +1);
-//                                Log.d(TAG, "10. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                                getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 2);
-//                                cal.add(Calendar.YEAR, +1);
-//                                cal.add(Calendar.DATE, -1);
-//                                date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
-//                                Log.d(TAG, "11. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-//                            }
-//                        }
-//                    });
+                            cal.add(Calendar.YEAR, -2);
+                            cal.add(Calendar.DATE, +1);
+                            Log.d(TAG, "5-1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime()); // last x 2 week
+                            getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1);
+                            try {
+                                Thread.sleep(20);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Log.d(TAG, "5-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            cal.add(Calendar.YEAR, +2);
+                            Log.d(TAG, "6. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            cal.add(Calendar.DATE, -1);
+                            date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
+                            cal.add(Calendar.DATE, +1);
+                            getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1); // last week
+                            Log.d(TAG, "7. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            cal.add(Calendar.YEAR, +1);
+                            cal.add(Calendar.DATE, -1);
+                            Log.d(TAG, "8. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                        }
+                    });
+
+                    nextBtn.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            //cal2.add(Calendar.DATE, +1);
+                            Log.d(TAG, "9. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+
+                            if(cal.get(Calendar.YEAR) == check.get(Calendar.YEAR)
+                                    && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
+                                    && cal.get(Calendar.DATE) == check.get(Calendar.DATE)) {
+                            }
+                            else {
+                                //cal2.setTime(cal.getTime());
+                                cal2.add(Calendar.YEAR, +1);
+                                cal.add(Calendar.YEAR, +1);
+                                cal.add(Calendar.DATE, +1);
+                                Log.d(TAG, "10. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                                getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 2);
+                                cal.add(Calendar.YEAR, +1);
+                                cal.add(Calendar.DATE, -1);
+                                date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
+                                Log.d(TAG, "11. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            }
+                        }
+                    });
 //
                     return false;
                 }
@@ -613,8 +604,8 @@ public class StatisticsFragment extends Fragment {
                                 String stepCount = "0";
                                 Date bucketStart = new Date(bucket.getStartTime(TimeUnit.MILLISECONDS));
                                 Date bucketEnd = new Date(bucket.getEndTime(TimeUnit.MILLISECONDS));
-                                /*Log.d(TAG, "Bucket start / end times: " +  dateFormat.format(bucketStart)
-                                        + " - " + dateFormat.format(bucketEnd));*/
+                                Log.d(TAG, "Bucket start / end times: " +  dateFormat.format(bucketStart)
+                                        + " - " + dateFormat.format(bucketEnd));
 
                                 List<DataSet> dataSets = bucket.getDataSets();
                                 for (DataSet set : dataSets) {
