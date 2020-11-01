@@ -10,16 +10,20 @@
         android:layout_height="match_parent">
 
         <TextView
+            android:id="@+id/profileTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:layout_marginBottom="64dp"
+            android:padding="10dp"
             android:text="프로필 정보 입력"
             android:textAlignment="center"
-            android:padding="10dp"
+            android:textColor="@color/colorPrimaryDark"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="16dp" />
 
         <LinearLayout
             android:id="@+id/linearLayout"
@@ -28,10 +32,10 @@
             android:background="@drawable/border_layout"
             android:orientation="vertical"
             android:padding="15dp"
-            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintBottom_toTopOf="@+id/profileButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/profileTitle">
 
             <TableLayout
                 android:layout_width="match_parent"
@@ -47,6 +51,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/user_name"
                         android:layout_width="115dp"
                         android:layout_height="wrap_content"
                         android:hint="name" />
@@ -61,11 +66,18 @@
                         android:textAlignment="center"
                         android:textSize="20sp" />
 
-                    <RadioButton android:text="여자" />
-
-                    <RadioButton
-                        android:layout_width="115dp"
-                        android:text="남자" />
+                    <RadioGroup>
+                        <RadioButton
+                            android:id="@+id/sex_woman"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="여자" />
+                        <RadioButton
+                            android:id="@+id/sex_man"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="남자" />
+                    </RadioGroup>
                 </TableRow>
 
                 <TableRow>
@@ -78,6 +90,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/user_height"
                         android:layout_width="137dp"
                         android:layout_height="wrap_content"
                         android:hint="cm" />
@@ -93,6 +106,7 @@
                         android:textSize="20sp" />
 
                     <EditText
+                        android:id="@+id/user_weight"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:hint="kg" />
@@ -113,6 +127,7 @@
                         android:textSize="20sp" />
 
                     <DatePicker
+                        android:id="@+id/user_birthday"
                         android:calendarViewShown="false"
                         android:datePickerMode="spinner" />
                 </TableRow>
@@ -121,12 +136,12 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/profileButton"
             android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="64dp"
+            android:layout_marginBottom="100dp"
             android:background="@color/colorPrimaryDark"
-            android:text="Start"
+            android:text="확인"
             android:textColor="@color/colorWhite"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
