@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context=".ui.home.MyDialogFragment">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:paddingHorizontal="20dp"
+        tools:ignore="MissingConstraints">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="목표 걸음 수를 설정하세요."
+            android:textSize="20dp"
+            android:gravity="center"
+            android:layout_margin="20dp"
+            android:textColor="@color/colorBlack"
+            android:visibility="visible" />
+
+        <EditText
+            android:id="@+id/new_goal"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="number"
+            android:hint="목표 걸음 수"
+            android:textSize="20dp"
+            android:maxLength="10"
+            android:textCursorDrawable="@color/colorDarkGray"
+            android:background="@drawable/border_white"
+            android:visibility="visible"/>
+        <Button
+            android:id="@+id/set_goal_btn"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_margin="20dp"
+            android:text="확인"
+            android:textSize="20dp"
+            android:background="@drawable/yellowbtn"
+            android:visibility="visible"/>
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

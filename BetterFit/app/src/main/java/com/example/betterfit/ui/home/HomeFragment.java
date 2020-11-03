@@ -65,20 +65,21 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements MyDialogFragment.OnInputListener {
 
     private static final String TAG = StatisticsFragment.class.getSimpleName();
     private static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1;
 
     private TextView date, step_count, goal_step, yester_comment, yesterday, yesterday_review, contents_title;
     private TextView walking_cal, walking_km;
-    private int goal_count = 10000;  // Max(goal_count)값은 10000가 default
+    private String max_count;  // modified
+    private int goal_count = 10000;  // Max(goal_count)값은 10000가 default - modified
     private Button andmoreBtn;
     private HomeViewModel homeViewModel;
     Map<String, Integer> totalStep1 = new HashMap<String, Integer>();
     private TextView pattern;
     private BarChart barchart;
-    //private LineChart linechart;
+    private ProgressBar circle_progressBar;  // modified
 
     private final FitnessOptions mFitnessOptions = FitnessOptions.builder()
             .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
@@ -121,6 +122,20 @@ public class HomeFragment extends Fragment {
         //linechart = (LineChart)view.findViewById(R.id.chart1);
         pattern = (TextView) view.findViewById(R.id.pattern);
 
+        // modified
+        TextView goalText = (TextView) view.findViewById(R.id.goal_step);  // 이거 누르면 Dialog창 뜸 : 목표 걸음 수 재설정 창
+        goal_step = (TextView) view.findViewById(R.id.goal_step);
+        goalText.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: opening the dialog");
+                MyDialogFragment dialog = new MyDialogFragment();
+                dialog.setTargetFragment(HomeFragment.this, 22); // in case of fragment to activity communication we do not need this line. But must write this i case of fragment to fragment communication
+                dialog.show(getFragmentManager(), "MyCustomDialog");
+            }
+        });
+        // 여기까지
+
         yester_comment = (TextView) view.findViewById(R.id.yester_comment);
         yester_comment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -140,6 +155,27 @@ public class HomeFragment extends Fragment {
         return view;
     }
 
+    // modified
+    public void sendInput(String input){  // 바꾼 목표 걸음 수를 input 데이터로 받아오는 함수
+        goal_step.setText("/ "+input);
+        max_count = input;
+        //onResume();
+        int count_goal = Integer.parseInt(max_count);
+        //System.out.println("-------------------------------------> 1) max count string : "+max_count);
+        setGoalCount(count_goal);
+        //circle_progressBar.setMax(count_goal);   // progressBar setMax
+        circle_progressBar.setMax(getGoalCount());   // progressBar setMax
+        //setMax(count_goal);
+    }
+    public void setGoalCount(int num){
+        goal_count = num;
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> set goal count : "+goal_count);
+    }
+    public int getGoalCount(){
+        return goal_count;
+    }
+    // 여기까지
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -149,6 +185,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        int max_step = getGoalCount();  // modified
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 1) onResume : "+getGoalCount());  // modified
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(getActivity(), mFitnessOptions);
 
@@ -171,7 +210,9 @@ public class HomeFragment extends Fragment {
         yesterday.setText(formatDate2);
 
         goal_step = (TextView) getView().findViewById(R.id.goal_step);
-        goal_step.setText("/ " + goal_count + "");
+        goal_step.setText("/ " + max_step);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> 2) onResume : "+max_step);
+        // 3줄 modified
         yesterday_review = (TextView) getView().findViewById(R.id.yester_review);
 
         final Calendar cal = Calendar.getInstance();
@@ -507,9 +548,14 @@ public class HomeFragment extends Fragment {
         yesterday_review = (TextView) getView().findViewById(R.id.yester_review);
         yesterday_review.setText("- 총 " + fin2 + "걸음 걸었습니다.");
 
-        final ProgressBar circle_progressBar = (ProgressBar) getView().findViewById(R.id.progressBar_circle);
-        circle_progressBar.setMax(goal_count);  // goal_count는 함수로 변경가능하도록
+        // modified
+        int max_step = getGoalCount();
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> printStepInfo - max step : "+getGoalCount());
+        circle_progressBar = (ProgressBar) getView().findViewById(R.id.progressBar_circle);
+        //circle_progressBar.setMax(goal_count);  // progressBar setMax
+        circle_progressBar.setMax(max_step);   // progressBar setMax
         circle_progressBar.setProgress(fin1);
+        // 여기까지
     }
 
     private void printCalorie(int calorie) { // 칼로리 TextView 설정
