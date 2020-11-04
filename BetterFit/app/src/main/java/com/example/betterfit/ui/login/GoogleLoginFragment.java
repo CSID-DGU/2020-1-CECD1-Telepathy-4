@@ -1,6 +1,5 @@
-package com.example.betterfit.ui;
+package com.example.betterfit.ui.login;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,9 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
-import com.example.betterfit.MainActivity;
 import com.example.betterfit.R;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -34,8 +31,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.util.concurrent.Executor;
-
 /**
  * A simple {@link Fragment} subclass.
  * Use the factory method to
@@ -52,6 +47,10 @@ public class GoogleLoginFragment extends Fragment {
     private final FitnessOptions mFitnessOptions = FitnessOptions.builder()
             .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
             .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.TYPE_CALORIES_EXPENDED, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.AGGREGATE_CALORIES_EXPENDED, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.TYPE_DISTANCE_DELTA, FitnessOptions.ACCESS_READ)
+            .addDataType(DataType.AGGREGATE_DISTANCE_DELTA, FitnessOptions.ACCESS_READ)
             .build();
 
     public GoogleLoginFragment() {
@@ -140,9 +139,9 @@ public class GoogleLoginFragment extends Fragment {
                 if (!GoogleSignIn.hasPermissions(account, mFitnessOptions)) {
                     GoogleSignIn.requestPermissions(this, GOOGLE_FIT_PERMISSIONS_REQUEST_CODE, account,
                             mFitnessOptions);
-                }
-                else {
-                    Navigation.findNavController(getView()).navigate(R.id.navigation_home);
+                    Navigation.findNavController(getView()).navigate(R.id.action_googleLoginFragment_to_profileFragment);
+                } else {
+                    Navigation.findNavController(getView()).navigate(R.id.action_googleLoginFragment_to_navigation_home);
                 }
 
             } catch (ApiException e) {
