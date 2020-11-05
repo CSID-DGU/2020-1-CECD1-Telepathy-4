@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="#"
+                    android:text="# 많이걸은날"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="120dp"
-                    android:text="#"
+                    android:text="# 홈트레이닝"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
@@ -115,201 +115,185 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="240dp"
-                    android:text="#"
+                    android:text="# 피로회복"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
 
             <FrameLayout
-                android:id="@+id/news"
-                android:layout_width="wrap_content"
-                android:layout_height="600dp"
+                android:id="@+id/product"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/border2">
 
-                <FrameLayout
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/thumbnail1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title1"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence1"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp">
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="135dp">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp">
 
-                    <ImageView
-                        android:id="@+id/thumbnail2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                            <ImageView
+                                android:id="@+id/product1"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:background="@drawable/product1"/>
 
-                    <TextView
-                        android:id="@+id/title2"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/title1"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="140dp"
+                                android:text="종아리 압박보정스타킹"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/sentence2"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/sentence1"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginLeft="140dp"
+                                android:layout_marginTop="60dp"
+                                android:text="오래 서 있거나 앉아 있어 다리가 붓는 경우 혈종이 생기는 것을 방지하고 부종과 통증의 감소"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="145dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="260dp">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="170dp">
 
-                    <ImageView
-                        android:id="@+id/thumbnail3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                            <ImageView
+                                android:id="@+id/product2"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:background="@drawable/product2"/>
 
-                    <TextView
-                        android:id="@+id/title3"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/title2"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="140dp"
+                                android:text="종아리 마사지 롤러"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/sentence3"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/sentence2"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginLeft="140dp"
+                                android:layout_marginTop="60dp"
+                                android:text="종아리 마사지 롤러를 이용해 부은 종아리를 풀어 주면 신장과 심장에 가는 부담을 줄이고"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="145dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="385dp">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="330dp">
 
-                    <ImageView
-                        android:id="@+id/thumbnail4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                            <ImageView
+                                android:id="@+id/product3"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:background="@drawable/product3"/>
 
-                    <TextView
-                        android:id="@+id/title4"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/title3"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="140dp"
+                                android:text="포도"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/sentence4"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/sentence3"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginLeft="140dp"
+                                android:layout_marginTop="60dp"
+                                android:text="풍부한 포도당과 과당을 제공하며 피로물질인 젖산을 분해하고 체외로 내보내는 포도는 피로회복에 도움이 된다."
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="145dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="510dp">
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="490dp">
 
-                    <ImageView
-                        android:id="@+id/thumbnail5"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
+                            <ImageView
+                                android:id="@+id/product4"
+                                android:layout_width="130dp"
+                                android:layout_height="130dp"
+                                android:background="@drawable/product4"/>
 
-                    <TextView
-                        android:id="@+id/title5"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/title4"
+                                android:layout_width="match_parent"
+                                android:layout_height="50dp"
+                                android:layout_marginLeft="140dp"
+                                android:text="피로회복제"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="18sp" />
 
-                    <TextView
-                        android:id="@+id/sentence5"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <TextView
+                                android:id="@+id/sentence4"
+                                android:layout_width="match_parent"
+                                android:layout_height="70dp"
+                                android:layout_marginLeft="140dp"
+                                android:layout_marginTop="60dp"
+                                android:text="어쩌구저쩌구대충제품소개내용어쩌구저쩌구어쩌구저쩌구"
+                                android:textColor="@color/colorBlack"
+                                android:gravity="center|left"
+                                android:textSize="16sp" />
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="145dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
+
+                    </FrameLayout>
+                </ScrollView>
             </FrameLayout>
         </FrameLayout>
     </FrameLayout>

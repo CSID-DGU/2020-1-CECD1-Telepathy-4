@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="#"
+                    android:text="# 많이걸은날"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
@@ -105,7 +105,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="120dp"
-                    android:text="#"
+                    android:text="# 홈트레이닝"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
 
@@ -115,111 +115,117 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="240dp"
-                    android:text="#"
+                    android:text="# 피로회복"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
 
-            <!--
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">-->
             <FrameLayout
                 android:id="@+id/video"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/border2">
 
-                <FrameLayout
-                    android:id="@+id/frameLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-                    <TextView
-                        android:id="@+id/title1"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp">
 
-                    <LinearLayout
-                        android:id="@+id/youtubeView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
+                        <FrameLayout
+                            android:id="@+id/frameLayout"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <TextView
+                                android:id="@+id/title1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="15dp"
+                                android:text="잠들기 전 다리 피로 싹 풀리는 5분 스트레칭"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="16sp" />
 
-                <FrameLayout
-                    android:id="@+id/frameLayout2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="255dp">
+                            <LinearLayout
+                                android:id="@+id/youtubeView1"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_marginTop="50dp"
+                                android:orientation="vertical" />
 
-                    <TextView
-                        android:id="@+id/title2"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="250dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
 
-                    <LinearLayout
-                        android:id="@+id/youtubeView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
+                        <FrameLayout
+                            android:id="@+id/frameLayout2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="255dp">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <TextView
+                                android:id="@+id/title2"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="15dp"
+                                android:text="다리 풀어주는 15분 스트레칭"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="16sp" />
 
-                <FrameLayout
-                    android:id="@+id/frameLayout3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="510dp">
+                            <LinearLayout
+                                android:id="@+id/youtubeView2"
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_marginTop="50dp"
+                                android:orientation="vertical" />
 
-                    <TextView
-                        android:id="@+id/title3"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="250dp"
+                                android:background="@color/colorGray" />
+                        </FrameLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
+                        <FrameLayout
+                            android:id="@+id/frameLayout3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="510dp">
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                            <TextView
+                                android:id="@+id/title3"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="5dp"
+                                android:layout_marginTop="15dp"
+                                android:text="다리에 뭉친 셀룰라이트를 풀어주는 방법"
+                                android:textColor="@color/colorBlack"
+                                android:textSize="16sp" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="180dp"
+                                android:layout_marginTop="50dp"
+                                android:orientation="vertical" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="2dp"
+                                android:layout_marginTop="250dp" />
+                            <!--android:background="@color/colorGray"-->
+                        </FrameLayout>
+                    </FrameLayout>
+                </ScrollView>
             </FrameLayout>
-            <!--</ScrollView>-->
         </FrameLayout>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

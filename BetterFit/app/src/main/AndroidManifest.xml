@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.betterfit">
-
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- Youtube Player API 때문에 추가함 -->
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
