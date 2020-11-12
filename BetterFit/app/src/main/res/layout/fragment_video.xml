@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="260dp"
+    android:layout_marginTop="10dp">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:text="제목: "
+            android:textColor="@color/colorBlack"
+            android:textSize="16sp" />
+
+        <WebView
+            android:id="@+id/videoWebView"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="25dp"
+            tools:ignore="MissingConstraints">
+
+            <LinearLayout
+                android:id="@+id/youtubeView"
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:orientation="vertical"/>
+        </WebView>
+
+        <View
+            android:id="@+id/horizontalLine"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="250dp"
+            android:background="@color/colorGray" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
