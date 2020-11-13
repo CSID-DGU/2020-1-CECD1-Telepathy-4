@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
+import android.widget.TextView;
 
 import com.example.betterfit.R;
 
@@ -28,6 +29,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
     }
 
     @Override public void onBindViewHolder(VideoViewHolder holder, int position) {
+        holder.title.setText(youtubeVideoList.get(position).getTitle());
         holder.videoWeb.loadData( youtubeVideoList.get(position).getVideoUrl(), "text/html" , "utf-8" );
     }
 
@@ -37,13 +39,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.VideoViewHol
 
     public class VideoViewHolder extends RecyclerView.ViewHolder{
         WebView videoWeb;
+        TextView title;
 
         public VideoViewHolder(View itemView) {
             super(itemView);
             videoWeb = (WebView) itemView.findViewById(R.id.videoWebView);
+            this.title = (TextView) itemView.findViewById(R.id.title);
             videoWeb.getSettings().setJavaScriptEnabled(true);
             videoWeb.setWebChromeClient(new WebChromeClient() {
-
             } );
         }
     }

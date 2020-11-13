@@ -9,18 +9,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="50dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical"
             android:padding="5dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -87,7 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginTop="70dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp">
 
                 <TextView
                     android:id="@+id/hashtag1"
@@ -95,27 +98,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="# 많이걸은날"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="120dp"
-                    android:text="# 홈트레이닝"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="240dp"
-                    android:text="# 피로회복"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
@@ -125,11 +107,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="110dp"
-                android:background="@drawable/border2">
+                android:background="@drawable/border2"
+                android:layout_marginHorizontal="10dp">
 
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerView"

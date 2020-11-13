@@ -63,17 +63,19 @@ import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class ContentsFragment extends Fragment {
-    private TextView title1, title2, title3;
     private Button videoBtn, newsBtn, productBtn;
+    private TextView hashtag1;
 
     private static final String TAG = StatisticsFragment.class.getSimpleName();
     private static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1;
     private StatisticsViewModel statisticsViewModel;
     Map<String,Integer> totalStep = new HashMap<String,Integer>();
 
+    int[] intArr = new int[7];
+    double dev = 0, devSqvSum = 0, avg, var, std1, std2;
+
     RecyclerView recyclerView;
-    Vector<String> youtubeTitles = new Vector<String>();
-    Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
+    Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>(); // 유튜브 동영상-제목 리스트 벡터
 
     private static final String API_KEY = "AIzaSyBiEWqzkWLAVs0RJsw7_WhZOUP3W5pn1BY";
     private static String VIDEO1_ID = "KHOhjvYPZfg";
@@ -84,7 +86,6 @@ public class ContentsFragment extends Fragment {
     public ContentsFragment() {
 
     }
-
 
     private final FitnessOptions mFitnessOptions = FitnessOptions.builder()
             .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
@@ -113,21 +114,22 @@ public class ContentsFragment extends Fragment {
         //contentsViewModel = new ViewModelProvider(this).get(ContentsViewModel.class);
         ViewGroup view = (ViewGroup)inflater.inflate(R.layout.fragment_contents, container, false);
 
-        //YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
-
-        //FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
-        //transaction.add(R.id.youtubeView1, youTubePlayerFragment).commit();
+        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView); // 동영상용 recyclerView
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
 
         statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
-
-        newsBtn = (Button) view.findViewById(R.id.newsBtn);
-        productBtn = (Button) view.findViewById(R.id.productBtn);
-
+        hashtag1 = (TextView) view.findViewById(R.id.hashtag1);
         /*
+        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.home_video, youTubePlayerFragment).commit();
+
         youTubePlayerFragment.initialize(API_KEY, new YouTubePlayer.OnInitializedListener() {
             public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer player, boolean wasRestored) {
                 if (!wasRestored) {
-                    player.cueVideo(VIDEO1_ID);
+                    player.cueVideo(VIDEO3_ID);
                     //player.play();
                 }
             }
@@ -142,11 +144,8 @@ public class ContentsFragment extends Fragment {
         });
         */
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
-
-
+        newsBtn = (Button) view.findViewById(R.id.newsBtn);
+        productBtn = (Button) view.findViewById(R.id.productBtn);
 
         newsBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -358,9 +357,17 @@ public class ContentsFragment extends Fragment {
                 stepsum = 0;
                 check1 = 0;
             }
+
             if(check2 == 168) {
                 totalStep.put(df.format(entry.getKey()), weeksum / 7);
-                //Log.d(TAG, "key2: " + df.format(entry.getKey()) + ", value2: " + weeksum/7);
+
+                avg = weeksum / 7;
+                for (int j = 0; j < 7; j++) {
+                    dev = (intArr[j] - avg);
+                    devSqvSum += Math.pow(dev, 2);
+                }
+                var = devSqvSum / 7;
+                std1 = Math.sqrt(var);
             }
         }
 
@@ -386,29 +393,39 @@ public class ContentsFragment extends Fragment {
             fin2 = val2; // last week step count
         Log.d(TAG, "fin1: " + fin1 + ", fin2: " + fin2 + ", fin2/5: " + fin2 / 5);
 
+        if(fin1 == 0) {
+            std2 = std1;
+        }
+
         if(fin1 != 0) {
-            if (fin2 + (fin2 / 5) < fin1) { //more
+            if (fin2 + std2 < fin1) { //more
                 // show more contents
                 Log.d(TAG, "more: " + Math.abs(fin1 - fin2));
+                hashtag1.setText("#많이 걸은 날 #다리 붓기 #피로 회복");
 
-                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/KHOhjvYPZfg\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"));
-
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/KHOhjvYPZfg\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "잠자기 전 5분! 다리피로 싹 풀리는 굿나잇 스트레칭"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WSEtdciBPLM\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "다리에 쌓인 피로를 풀어주는 요가 스트레칭"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/FVfIdxyRTHw\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "다리에 뭉친 셀룰라이트를 풀어주는 방법"));
                 VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                 recyclerView.setAdapter(videoAdapter);
-            } else if (fin2 - (fin2 / 5) > fin1) { //less
+            } else if (fin2 - std2 > fin1) { //less
                 // show less contents
                 Log.d(TAG, "less: " + Math.abs(fin1 - fin2));
+                hashtag1.setText("#조금 걸은 날 #홈 트레이닝 #걷기의 좋은점");
 
-                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WSEtdciBPLM\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"));
-
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/MWnD6DhLjyc\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "집에서 칼로리 소모 폭탄 걷기 운동"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/16MWO5rtYUo\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "제자리 걷기 다이어트 / 집에서 걷기"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/l6OQNELxPPk\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "운동의 긍정적인 효과"));
                 VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                 recyclerView.setAdapter(videoAdapter);
             } else { //similar
                 // show similar contents
                 Log.d(TAG, "similar: " + Math.abs(fin1 - fin2));
+                hashtag1.setText("#비슷하게 걸은 날 #바른 걸음걸이 #자세 교정");
 
-                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/FVfIdxyRTHw\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>"));
-
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/CnfhncSubmM\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "이렇게 걸으면 운동 효과가 더 좋습니다"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/8IRu5JCNJ2E\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "올바른 걷기를 위한 운동 방법"));
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/5ylTGw3BuWQ\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", "보폭 넓혀 걷기의 효과"));
                 VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
                 recyclerView.setAdapter(videoAdapter);
             }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="170dp"
+    android:layout_marginTop="5dp">
+
+    <!-- 첫 번째 기사 박스 -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        tools:ignore="MissingConstraints">
+
+        <!-- 첫 번째 썸네일 -->
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="100dp"
+            android:layout_height="100dp"/>
+
+        <!-- 첫 번째 기사 제목 -->
+        <TextView
+            android:id="@+id/newsTitle"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="110dp"
+            android:textColor="@color/colorBlack"
+            android:gravity="center|left"
+            android:textSize="18sp" />
+
+        <!-- 첫 번째 기사 출처 -->
+        <TextView
+            android:id="@+id/author"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="55dp"
+            android:textColor="@color/colorBlack"
+            android:gravity="center|left"
+            android:textSize="16sp" />
+
+        <!-- 첫 번째 기사 내용 -->
+        <TextView
+            android:id="@+id/sentence"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="110dp"
+            android:textColor="@color/colorBlack"
+            android:gravity="center|left"
+            android:textSize="16sp" />
+
+        <!-- 구분선 -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_marginTop="165dp"
+            android:background="@color/colorGray" />
+    </FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

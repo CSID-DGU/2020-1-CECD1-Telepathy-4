@@ -8,19 +8,22 @@ public class YouTubeVideos {
 
     }
 
-    public YouTubeVideos(String videoUrl) {
+    public YouTubeVideos(String videoUrl, String Title) {
         this.videoUrl = videoUrl;
-    }
-
-    public String getTitle() {
-        return title;
+        title = Title;
     }
 
     public String getVideoUrl() {
         return videoUrl;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
+
+    public void setTitle(String title) { this.title = title; }
 }

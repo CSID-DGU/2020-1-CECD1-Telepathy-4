@@ -698,7 +698,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -712,8 +712,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep1.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -731,6 +731,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -830,7 +834,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -1008,7 +1012,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1024,8 +1028,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep2.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -1047,6 +1051,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -1143,7 +1151,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -1296,7 +1304,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1312,8 +1320,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep2.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -1335,6 +1343,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -1569,7 +1581,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1577,8 +1589,8 @@ public class StatisticsFragment extends Fragment {
         //chart.getAxisLeft().setLabelCount(7, true);
         //chart.setVisibleXRangeMaximum(7);
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -1594,6 +1606,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 

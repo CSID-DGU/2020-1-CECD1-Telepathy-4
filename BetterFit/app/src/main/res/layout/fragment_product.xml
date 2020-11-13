@@ -9,18 +9,21 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="50dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical"
             android:padding="5dp">
 
+            <!-- 여기는 상단 영상 / 뉴스 / 제품 메뉴 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -33,7 +36,6 @@
                     android:textColor="@color/colorGray"
                     android:textSize="24sp"
                     style="@style/Widget.AppCompat.Button.Borderless" />
-                <!--android:onClick="onClickedVideoButton"-->
 
                 <Button
                     android:id="@+id/newsBtn"
@@ -44,7 +46,6 @@
                     android:textColor="@color/colorGray"
                     android:textSize="24sp"
                     style="@style/Widget.AppCompat.Button.Borderless" />
-                <!--android:onClick="onClickedNewsButton"-->
 
                 <Button
                     android:id="@+id/productBtn"
@@ -65,6 +66,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/colorGray" />
+
                 <View
                     android:id="@+id/newsBar"
                     android:layout_width="50dp"
@@ -72,7 +74,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@color/colorGray" />
-                <!--android:onClick="onClickedProductButton"-->
+
                 <View
                     android:id="@+id/productBar"
                     android:layout_width="50dp"
@@ -83,11 +85,13 @@
                     android:background="@color/colorRed" />
             </FrameLayout>
 
+            <!-- 여기는 해시태그 출력 부분 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginTop="70dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp">
 
                 <TextView
                     android:id="@+id/hashtag1"
@@ -95,204 +99,31 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="# 많이걸은날"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="120dp"
-                    android:text="# 홈트레이닝"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="240dp"
-                    android:text="# 피로회복"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
 
+            <!-- 여기부터 제품 부분 -->
+            <!-- 제품 전체 박스 -->
             <FrameLayout
-                android:id="@+id/product"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/border2">
 
+                <!-- 제품 전체 스크롤-->
                 <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp">
 
-                    <FrameLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_products"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginHorizontal="10dp">
+                        android:layout_marginHorizontal="10dp"/>
 
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp">
-
-                            <ImageView
-                                android:id="@+id/product1"
-                                android:layout_width="130dp"
-                                android:layout_height="130dp"
-                                android:background="@drawable/product1"/>
-
-                            <TextView
-                                android:id="@+id/title1"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="140dp"
-                                android:text="종아리 압박보정스타킹"
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:id="@+id/sentence1"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_marginLeft="140dp"
-                                android:layout_marginTop="60dp"
-                                android:text="오래 서 있거나 앉아 있어 다리가 붓는 경우 혈종이 생기는 것을 방지하고..."
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="16sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:layout_marginTop="145dp"
-                                android:background="@color/colorGray" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="170dp">
-
-                            <ImageView
-                                android:id="@+id/product2"
-                                android:layout_width="130dp"
-                                android:layout_height="130dp"
-                                android:background="@drawable/product2"/>
-
-                            <TextView
-                                android:id="@+id/title2"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="140dp"
-                                android:text="종아리 마사지 롤러"
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:id="@+id/sentence2"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_marginLeft="140dp"
-                                android:layout_marginTop="60dp"
-                                android:text="종아리 마사지 롤러를 이용해 부은 종아리를 풀어 주면 신장과 심장에 가는..."
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="16sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:layout_marginTop="145dp"
-                                android:background="@color/colorGray" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="330dp">
-
-                            <ImageView
-                                android:id="@+id/product3"
-                                android:layout_width="130dp"
-                                android:layout_height="130dp"
-                                android:background="@drawable/product3"/>
-
-                            <TextView
-                                android:id="@+id/title3"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="140dp"
-                                android:text="포도"
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:id="@+id/sentence3"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_marginLeft="140dp"
-                                android:layout_marginTop="60dp"
-                                android:text="풍부한 포도당과 과당을 제공하며 피로물질인 젖산을 분해하고 체외로..."
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="16sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:layout_marginTop="145dp"
-                                android:background="@color/colorGray" />
-                        </FrameLayout>
-
-                        <FrameLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="490dp">
-
-                            <ImageView
-                                android:id="@+id/product4"
-                                android:layout_width="130dp"
-                                android:layout_height="130dp"
-                                android:background="@drawable/product4"/>
-
-                            <TextView
-                                android:id="@+id/title4"
-                                android:layout_width="match_parent"
-                                android:layout_height="50dp"
-                                android:layout_marginLeft="140dp"
-                                android:text="피로회복제"
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="18sp" />
-
-                            <TextView
-                                android:id="@+id/sentence4"
-                                android:layout_width="match_parent"
-                                android:layout_height="70dp"
-                                android:layout_marginLeft="140dp"
-                                android:layout_marginTop="60dp"
-                                android:text="고된 노동이나 정신 활동으로 저하된 신체 기능을 일시적으로 회복시켜 주는..."
-                                android:textColor="@color/colorBlack"
-                                android:gravity="center|left"
-                                android:textSize="16sp" />
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="2dp"
-                                android:layout_marginTop="145dp"
-                                android:background="@color/colorGray" />
-                        </FrameLayout>
-
-                    </FrameLayout>
                 </ScrollView>
             </FrameLayout>
         </FrameLayout>
