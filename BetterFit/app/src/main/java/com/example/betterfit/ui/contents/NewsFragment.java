@@ -423,22 +423,22 @@ public class NewsFragment extends Fragment {
                 articles.add(new Articles(R.drawable.thumbnail31,
                         "엉덩이로 걸어라…재활의학과 의사의 바른 걷기법",
                         "중앙일보, 유재욱 기자",
-                        "\"누구나 걷는다. 하지만 제대로 걷는 사람은 거의 없다./" +"\n재활의학과 의사로서 25년간 잘못 걸어서 생긴 여러 가지 질병과 통증을 치료해왔다.…",
+                        "\"누구나 걷는다. 하지만 제대로 걷는 사람은 거의 없다." +"\n재활의학과 의사로서 25년간 잘못 걸어서 생긴 여러…",
                         "https://news.joins.com/article/23910703")); // 기사 1
                 articles.add(new Articles(R.drawable.thumbnail32,
                         "신발과 걸음걸이, 그리고 나의 건강 상태",
                         "경기일보, 박태훈 기자",
-                        "오래 신은 신발일수록 신발 바닥, 밑창이 많이 닳는다. 신발 밑창을 보고 \'신발을 바꿀 때가 됐구나\'라고 할 수도 있지만…",
+                        "오래 신은 신발일수록 신발 바닥, 밑창이 많이 닳는다. 신발 밑창을 보고 \'신발을 바꿀 때가 됐구나\'라고 할 수도…",
                         "http://www.kyeonggi.com/news/articleView.html?idxno=2272435")); // 기사 2
                 articles.add(new Articles(R.drawable.thumbnail33,
                         "바른 걸음걸이 알려주는 스마트 신발·깔창 \'주목\'",
                         "연합뉴스, 이주영 기자",
-                        "힘이나 압력의 세기를 측정할 수 있는 촉각센서를 활용해 걸음걸이 자세를 확인하고 교정할 수 있게 도와주는 스마트 신발과 깔창이 등장해 관심을 끌고 있다…",
+                        "힘이나 압력의 세기를 측정할 수 있는 촉각센서를 활용해 걸음걸이 자세를 확인하고 교정할 수 있게 도와주는…",
                         "https://www.yna.co.kr/view/AKR20150527120600063?input=1195m")); // 기사 3
                 articles.add(new Articles(R.drawable.thumbnail34,
                         "바른 걸음걸이, 바르게 서기부터",
                         "메디파나뉴스, 박민욱 기자",
-                        "걷기는 전신을 이용하는 움직임으로 우리 몸의 뼈와 근육, 관절 모든 부분에 자극을 준다. 유산소운동으로서 걷기가 몸에 좋은 영향을 가져온다는 사실은…",
+                        "걷기는 전신을 이용하는 움직임으로 우리 몸의 뼈와 근육, 관절 모든 부분에 자극을 준다. 유산소운동으로서 걷기가…",
                         "http://medipana.com/news/news_viewer.asp?NewsNum=180045&MainKind=A&NewsKind=5&vCount=12&vKind=1")); // 기사 4
                 NewsAdapter newsAdapter = new NewsAdapter(articles);
                 recyclerView.setAdapter(newsAdapter);
