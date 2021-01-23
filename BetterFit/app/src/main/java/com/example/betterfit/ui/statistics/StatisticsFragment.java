@@ -457,53 +457,40 @@ public class StatisticsFragment extends Fragment {
                     cal.setTime(new Date());
                     cal2.setTime(cal.getTime());
                     cal2.add(Calendar.YEAR, -1);
-                    cal2.add(Calendar.DATE, +1);
-                    Log.d(TAG, "1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                    cal2.add(Calendar.MONTH, +1);
+                    //Log.d(TAG, "1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
                     date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
 
-                    cal.add(Calendar.YEAR, -1);
+                    cal.add(Calendar.MONTH, -7);
                     cal.add(Calendar.DATE, +1);
-                    Log.d(TAG, "2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-                    getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1); // last week
+                    //Log.d(TAG, "2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                    //getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1); // last week
                     //cal.add(Calendar.DATE, +6);
-                    Log.d(TAG, "3-1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                    //Log.d(TAG, "3-1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
                     getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 0); // this week
-                    cal.add(Calendar.YEAR, +1);
+                    cal.add(Calendar.MONTH, +7);
                     cal.add(Calendar.DATE, -1);
-                    Log.d(TAG, "3-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                    //Log.d(TAG, "3-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
 
                     prevBtn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            //cal2.setTime(cal.getTime());
-                            cal2.add(Calendar.YEAR, -1);
-                            Log.d(TAG, "4. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-
+                            /*cal2.add(Calendar.YEAR, -1);
                             cal.add(Calendar.YEAR, -2);
                             cal.add(Calendar.DATE, +1);
-                            Log.d(TAG, "5-1. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime()); // last x 2 week
-                            getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1);
-                            try {
-                                Thread.sleep(20);
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-                            Log.d(TAG, "5-2. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            //getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1);
                             cal.add(Calendar.YEAR, +2);
-                            Log.d(TAG, "6. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
                             cal.add(Calendar.DATE, -1);
                             date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
                             cal.add(Calendar.DATE, +1);
                             getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 1); // last week
-                            Log.d(TAG, "7. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
                             cal.add(Calendar.YEAR, +1);
-                            cal.add(Calendar.DATE, -1);
-                            Log.d(TAG, "8. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                            cal.add(Calendar.DATE, -1);*/
                         }
                     });
 
@@ -511,24 +498,18 @@ public class StatisticsFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
 
-                            //cal2.add(Calendar.DATE, +1);
-                            Log.d(TAG, "9. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
-
                             if(cal.get(Calendar.YEAR) == check.get(Calendar.YEAR)
                                     && cal.get(Calendar.MONTH) == check.get(Calendar.MONTH)
                                     && cal.get(Calendar.DATE) == check.get(Calendar.DATE)) {
                             }
                             else {
-                                //cal2.setTime(cal.getTime());
-                                cal2.add(Calendar.YEAR, +1);
+                                /*cal2.add(Calendar.YEAR, +1);
                                 cal.add(Calendar.YEAR, +1);
                                 cal.add(Calendar.DATE, +1);
-                                Log.d(TAG, "10. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
                                 getDailyStepCountsFromGoogleFit4(mFitnessOptions, cal, 2);
                                 cal.add(Calendar.YEAR, +1);
                                 cal.add(Calendar.DATE, -1);
-                                date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));
-                                Log.d(TAG, "11. cal1: " + cal.getTime() + ", cal2: " + cal2.getTime());
+                                date.setText(mFormat.format(cal2.getTime())+"~"+mFormat.format(cal.getTime()));*/
                             }
                         }
                     });
@@ -717,7 +698,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -731,8 +712,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep1.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -750,6 +731,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -849,7 +834,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -1027,7 +1012,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1043,8 +1028,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep2.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -1066,6 +1051,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -1162,7 +1151,7 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -1315,7 +1304,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1331,8 +1320,8 @@ public class StatisticsFragment extends Fragment {
             Log.d(TAG, "value = " + totalStep2.get(key));
         }*/
 
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
@@ -1354,6 +1343,10 @@ public class StatisticsFragment extends Fragment {
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
@@ -1407,20 +1400,15 @@ public class StatisticsFragment extends Fragment {
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             endTime = cal.getTimeInMillis();
-            /*cal.setTime(new Date());
-            cal.set(Calendar.HOUR_OF_DAY, cal.get(Calendar.HOUR_OF_DAY));
-            cal.set(Calendar.MINUTE, cal.get(Calendar.MINUTE));
-            cal.set(Calendar.SECOND, cal.get(Calendar.SECOND));
-            endTime = cal.getTimeInMillis();*/
 
-            cal.add(Calendar.YEAR, -1);
+            cal.add(Calendar.MONTH, -6);
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             startTime = cal.getTimeInMillis();
 
-            Log.d(TAG, "Date Start3-1: " + dateFormat.format(startTime));
-            Log.d(TAG, "Date End3-1: " + dateFormat.format(endTime));
+            //Log.d(TAG, "Date Start3-1: " + dateFormat.format(startTime));
+            //Log.d(TAG, "Date End3-1: " + dateFormat.format(endTime));
         }
         else { // flag == 1 or 2
             //cal.add(Calendar.DAY_OF_YEAR, +6); // cal.add(Calendar.MONTH, -12);
@@ -1429,14 +1417,14 @@ public class StatisticsFragment extends Fragment {
             cal.set(Calendar.SECOND, 0);
             endTime = cal.getTimeInMillis();
 
-            cal.add(Calendar.YEAR, -1);
+            cal.add(Calendar.MONTH, -6);
             cal.set(Calendar.HOUR_OF_DAY, 0);
             cal.set(Calendar.MINUTE, 0);
             cal.set(Calendar.SECOND, 0);
             startTime = cal.getTimeInMillis();
 
-            Log.d(TAG, "Date Start3-2: " + dateFormat.format(startTime));
-            Log.d(TAG, "Date End3-2: " + dateFormat.format(endTime));
+            //Log.d(TAG, "Date Start3-2: " + dateFormat.format(startTime));
+            //Log.d(TAG, "Date End3-2: " + dateFormat.format(endTime));
         }
 
         DataReadRequest readRequest = new DataReadRequest.Builder()
@@ -1446,12 +1434,13 @@ public class StatisticsFragment extends Fragment {
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
                 .addOnSuccessListener(new OnSuccessListener<DataReadResponse>() {
-                    @Override public void onSuccess(DataReadResponse response) {
+                    @Override
+                    public void onSuccess(DataReadResponse response) {
                         statisticsViewModel.clearData();
 
                         if (!response.getBuckets().isEmpty()) {
@@ -1459,7 +1448,7 @@ public class StatisticsFragment extends Fragment {
                                 String stepCount = "0";
                                 Date bucketStart = new Date(bucket.getStartTime(TimeUnit.MILLISECONDS));
                                 Date bucketEnd = new Date(bucket.getEndTime(TimeUnit.MILLISECONDS));
-                                /*Log.d(TAG, "Bucket start2 / end times2: " +  dateFormat.format(bucketStart)
+                                /*Log.d(TAG, "Bucket start / end times: " +  dateFormat.format(bucketStart)
                                         + " - " + dateFormat.format(bucketEnd));*/
 
                                 List<DataSet> dataSets = bucket.getDataSets();
@@ -1491,65 +1480,58 @@ public class StatisticsFragment extends Fragment {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override public void onFailure(@NonNull Exception e) {
-                        //Log.d(TAG, "OnFailure()", e);
+                        Log.d(TAG, "OnFailure()", e);
                     }
                 });
     }
 
     private void buildChart4(Calendar cal) {
 
-        int check1 = 0, check2 = 0, check3 = 0;
-        int stepsum = 0, yearsum = 0;
+        int month_tot = 0, month_count = 0, year_tot = 0;
+        int check1 = 0, check2 = 0;
         int stepmax = 0;
-        String str = null;
-        //int x = 1000;
-        final DateFormat dateFormat = DateFormat.getDateInstance();
+        String yea, mon;
+
         chart.removeAllViews();
         List<BarEntry> values = new ArrayList<BarEntry>();
         SimpleDateFormat yf = new SimpleDateFormat("yy");
-        SimpleDateFormat mf = new SimpleDateFormat("MM");
-        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        SimpleDateFormat mf = new SimpleDateFormat("M");
+        yea = yf.format(cal.getTime());
+        mon = "5"; // mf.format(cal.getTime());
+
+        values.add(new BarEntry(Integer.parseInt("0"), 0)); // 12
+        values.add(new BarEntry(Integer.parseInt("1"), 0));
+        values.add(new BarEntry(Integer.parseInt("2"), 0));
+        values.add(new BarEntry(Integer.parseInt("3"), 0));
+        values.add(new BarEntry(Integer.parseInt("4"), 0));
         for (Map.Entry<Date, String> entry : statisticsViewModel.getFitnessData().entrySet()) {
-            stepsum += Integer.parseInt(entry.getValue());
-            check1++;
-            check2++;
-            check3++;
-            if(check3 == 24) {
-                str = yf.format(entry.getKey());
+            ++check2;
+            if (yea.equals(yf.format(entry.getKey())) && mon.equals(mf.format(entry.getKey()))) {
+                month_tot += Integer.parseInt(entry.getValue());
+                ++check1;
             }
-            if(check1 == 720) {
-                //x += Integer.parseInt(wf.format(entry.getKey()));
-                if(yf.format(entry.getKey()).equals(str)) {
-                    values.add(new BarEntry(Integer.parseInt(mf.format(entry.getKey())), stepsum));
+            if(!mon.equals(mf.format(entry.getKey())) || check2 == 4416) {
+                if (stepmax < month_tot / (check1 / 24)) {
+                    stepmax = month_tot / (check1 / 24);
                 }
-                else {
-                    values.add(new BarEntry(12+Integer.parseInt(mf.format(entry.getKey())), stepsum));
-                }
-                //x -= Integer.parseInt(wf.format(entry.getKey()));
-                //x += 100;
-                //Log.d(TAG, "BarEntry2: " + df.format(entry.getKey()) + " stepsum2: " + stepsum);
-                //Log.d(TAG, "BarEntry2: " + values.toString());
-                if(stepmax < stepsum) {
-                    stepmax = stepsum;
-                }
-                yearsum += stepsum;
-                stepsum = 0;
+                values.add(new BarEntry(Integer.parseInt(mon), month_tot / (check1 / 24)));
+                Log.d(TAG, "x: " + mon + ", y: " + month_tot / (check1 / 24));
+                year_tot += month_tot / (check1 / 24);
+                ++month_count;
+
+                mon = Integer.toString(Integer.parseInt(mon) + 1);
+
+                /*if (yea != yf.format(entry.getKey())) { // year changes
+                    yea = Integer.toString(Integer.parseInt(yea) + 1);
+                    mon = Integer.toString(Integer.parseInt(mon) - 11);
+                } else { // month changes
+                    mon = Integer.toString(Integer.parseInt(mon) + 1);
+                }*/
+                month_tot = 0;
                 check1 = 0;
             }
-            if(check2 == 8640) {
-                totalStep3.put(df.format(entry.getKey()), yearsum / 365);
-                //Log.d(TAG, "key2: " + df.format(entry.getKey()) + ", value2: " + weeksum/7);
-            }
         }
-
-        /*for (Map.Entry<Integer, Integer> entry : totalStep2.entrySet()) {
-            Log.d(TAG, "key2: " + entry.getKey() + "value2: " + entry.getValue());
-        }*/
-
-        /*for (Map.Entry<Integer, Integer> entry : totalStep2.entrySet()) {
-            String x = df.format(entry.getKey());
-            values.add(new BarEntry(Integer.parseInt(x), entry.getValue()));
-        }*/
+        totalStep4.put(yea, year_tot / month_count);
 
         BarDataSet set1 = new BarDataSet(values, "걸음 수");
         set1.setColor(Color.parseColor("#FE4901"));
@@ -1599,7 +1581,7 @@ public class StatisticsFragment extends Fragment {
         chart.setScaleEnabled(false);
         chart.setPinchZoom(false);
         chart.setDrawGridBackground(false);
-        chart.animateY(800);
+        //chart.animateY(800);
         chart.setData(data);
         chart.invalidate();
         chart.setDescription(null);
@@ -1607,54 +1589,44 @@ public class StatisticsFragment extends Fragment {
         //chart.getAxisLeft().setLabelCount(7, true);
         //chart.setVisibleXRangeMaximum(7);
 
-        /*TreeMap<String,Integer> tm = new TreeMap<String,Integer>(totalStep2);
-        Iterator<String> iterator = tm.keySet( ).iterator( );
-        while(iterator.hasNext()) {
-            String key = iterator.next();
-            Log.d(TAG, "key = " + key);
-            Log.d(TAG, "value = " + totalStep2.get(key));
-        }*/
-
-        progressBar1.setMax(5000);
-        progressBar2.setMax(5000);
+        //progressBar1.setMax(5000);
+        //progressBar2.setMax(5000);
 
         int fin1 = 0, fin2 = 0;
         Calendar cal2 = Calendar.getInstance();
         cal2.setTime(cal.getTime());
-        cal2.set(Calendar.HOUR_OF_DAY, 23);
-        cal2.set(Calendar.MINUTE, 0);
-        cal2.set(Calendar.SECOND, 0);
-        String fd = df.format(cal2.getTime());
-        Integer val1 = totalStep3.get(fd);
-        cal2.add(Calendar.DATE, -30);
-        fd = df.format(cal2.getTime());
-        Integer val2 = totalStep3.get(fd);
-
-        /*String fd = df.format(cal.getTime());
-        Integer val1 = totalStep2.get(Integer.parseInt(fd));
-        Integer val2 = totalStep2.get(Integer.parseInt(fd)-7);*/
+        String fd = yf.format(cal2.getTime());
+        Integer val1 = totalStep4.get(fd);
+        Integer val2 = 0;
+        /*cal.add(Calendar.YEAR, -1);
+        fd = yf.format(cal2.getTime());
+        Integer val2 = totalStep4.get(fd);*/
 
         if(val1 != null)
             fin1 = val1;
         if(val2 != null)
             fin2 = val2;
+
+        int max_fin = Math.max(fin1, fin2);
+        progressBar1.setMax(max_fin);
+        progressBar2.setMax(max_fin);
         progressBar1.setProgress(fin1);
         progressBar2.setProgress(fin2);
 
         step_count.setText("평균 "+fin1+"걸음");
         if(fin1 - fin2 > 0) {
             int more = fin1 - fin2;
-            review1.setText("저번달보다 하루 평균 "+more+"걸음 더 걸었습니다.");
+            review1.setText("작년보다 하루 평균 "+more+"걸음 더 걸었습니다.");
         }
         else if(fin2 - fin1 > 0) {
             int less = fin2 - fin1;
-            review1.setText("저번달보다 하루 평균 "+less+"걸음 덜 걸었습니다.");
+            review1.setText("작년보다 하루 평균 "+less+"걸음 덜 걸었습니다.");
         }
         else {
-            review1.setText("이번달과 저번달의 평균 걸음 수가 동일합니다.");
+            review1.setText("작년과 올해의 평균 걸음 수가 동일합니다.");
         }
-        review2.setText("이번달 평균 "+fin1+" 걸음/일");
-        review3.setText("저번달 평균 "+fin2+" 걸음/일");
+        review2.setText("올해 평균 "+fin1+" 걸음/일");
+        review3.setText("작년 평균 "+fin2+" 걸음/일");
     }
 
     class YearValueFormatter extends ValueFormatter {
@@ -1669,13 +1641,16 @@ public class StatisticsFragment extends Fragment {
 
         @Override
         public String getFormattedValue(float value) {
-            if(value >= 13) {
-                value -= 12;
-            }
+            if(value == -1)
+                return mFormat.format(11);
+            else if (value == 0)
+                return mFormat.format(12);
+            else
+                return mFormat.format(value);
             //Log.d(TAG, "value: " + value);
-            str = Float.toString(value);
+            /*str = Float.toString(value);
             idx = str.indexOf(".");
-            return mFormat.format(Float.parseFloat(str.substring(0,idx)));
+            return mFormat.format(Float.parseFloat(str.substring(0,idx)));*/
         }
     }
 }

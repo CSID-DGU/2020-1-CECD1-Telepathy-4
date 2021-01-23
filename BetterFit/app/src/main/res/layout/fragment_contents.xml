@@ -9,18 +9,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="50dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical"
             android:padding="5dp">
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -87,7 +89,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginTop="70dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp">
 
                 <TextView
                     android:id="@+id/hashtag1"
@@ -95,131 +98,30 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="#"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="120dp"
-                    android:text="#"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="240dp"
-                    android:text="#"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
 
-            <!--
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">-->
             <FrameLayout
                 android:id="@+id/video"
                 android:layout_width="match_parent"
-                android:layout_height="600dp"
+                android:layout_height="match_parent"
                 android:layout_marginTop="110dp"
-                android:background="@drawable/border2">
+                android:background="@drawable/border2"
+                android:layout_marginHorizontal="10dp">
 
-                <FrameLayout
-                    android:id="@+id/frameLayout"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp">
 
-                    <TextView
-                        android:id="@+id/title1"
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <LinearLayout
-                        android:id="@+id/youtubeView1"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/frameLayout2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="255dp">
-
-                    <TextView
-                        android:id="@+id/title2"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <LinearLayout
-                        android:id="@+id/youtubeView2"
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:id="@+id/frameLayout3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="510dp">
-
-                    <TextView
-                        android:id="@+id/title3"
-                        android:layout_width="match_parent"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
-                        android:layout_marginTop="50dp"
-                        android:orientation="vertical" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="250dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                        android:layout_height="220dp"
+                        android:layout_marginHorizontal="10dp"/>
+                </ScrollView>
             </FrameLayout>
-            <!--</ScrollView>-->
         </FrameLayout>
     </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

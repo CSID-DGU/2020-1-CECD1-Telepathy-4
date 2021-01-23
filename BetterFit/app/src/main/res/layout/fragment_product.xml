@@ -9,18 +9,21 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/colorWhite">
+        android:background="@color/colorWhite"
+        android:layout_marginBottom="50dp">
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
+            android:layout_marginVertical="20dp"
             android:orientation="vertical"
             android:padding="5dp">
 
+            <!-- 여기는 상단 영상 / 뉴스 / 제품 메뉴 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
                 android:orientation="horizontal">
 
                 <Button
@@ -33,7 +36,6 @@
                     android:textColor="@color/colorGray"
                     android:textSize="24sp"
                     style="@style/Widget.AppCompat.Button.Borderless" />
-                <!--android:onClick="onClickedVideoButton"-->
 
                 <Button
                     android:id="@+id/newsBtn"
@@ -44,7 +46,6 @@
                     android:textColor="@color/colorGray"
                     android:textSize="24sp"
                     style="@style/Widget.AppCompat.Button.Borderless" />
-                <!--android:onClick="onClickedNewsButton"-->
 
                 <Button
                     android:id="@+id/productBtn"
@@ -65,6 +66,7 @@
                     android:layout_marginLeft="50dp"
                     android:layout_marginTop="20dp"
                     android:background="@color/colorGray" />
+
                 <View
                     android:id="@+id/newsBar"
                     android:layout_width="50dp"
@@ -72,7 +74,7 @@
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@color/colorGray" />
-                <!--android:onClick="onClickedProductButton"-->
+
                 <View
                     android:id="@+id/productBar"
                     android:layout_width="50dp"
@@ -83,11 +85,13 @@
                     android:background="@color/colorRed" />
             </FrameLayout>
 
+            <!-- 여기는 해시태그 출력 부분 -->
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
                 android:layout_marginTop="70dp"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layout_marginHorizontal="20dp">
 
                 <TextView
                     android:id="@+id/hashtag1"
@@ -95,221 +99,32 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|left"
                     android:layout_marginLeft="10dp"
-                    android:text="#"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="120dp"
-                    android:text="#"
-                    android:textColor="@color/colorBlack"
-                    android:textSize="15dp" />
-
-                <TextView
-                    android:id="@+id/hashtag3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center|left"
-                    android:layout_marginLeft="240dp"
-                    android:text="#"
                     android:textColor="@color/colorBlack"
                     android:textSize="15dp" />
             </FrameLayout>
 
+            <!-- 여기부터 제품 부분 -->
+            <!-- 제품 전체 박스 -->
             <FrameLayout
-                android:id="@+id/news"
-                android:layout_width="wrap_content"
-                android:layout_height="600dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginTop="110dp"
                 android:background="@drawable/border2">
 
-                <FrameLayout
+                <!-- 제품 전체 스크롤-->
+                <ScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="10dp">
+                    android:layout_height="match_parent"
+                    android:paddingTop="10dp">
 
-                    <ImageView
-                        android:id="@+id/thumbnail1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title1"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence1"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView_products"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="10dp"/>
 
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="135dp">
-
-                    <ImageView
-                        android:id="@+id/thumbnail2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title2"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence2"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="260dp">
-
-                    <ImageView
-                        android:id="@+id/thumbnail3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title3"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence3"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="385dp">
-
-                    <ImageView
-                        android:id="@+id/thumbnail4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title4"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence4"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="115dp"
-                    android:layout_marginTop="510dp">
-
-                    <ImageView
-                        android:id="@+id/thumbnail5"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp" />
-
-                    <TextView
-                        android:id="@+id/title5"
-                        android:layout_width="210dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="0dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <TextView
-                        android:id="@+id/sentence5"
-                        android:layout_width="210dp"
-                        android:layout_height="65dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="35dp"
-                        android:text=""
-                        android:textColor="@color/colorBlack"
-                        android:textSize="18sp" />
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_marginTop="110dp"
-                        android:background="@color/colorGray" />
-                </FrameLayout>
+                </ScrollView>
             </FrameLayout>
         </FrameLayout>
     </FrameLayout>

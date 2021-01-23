@@ -1,8 +1,11 @@
 package com.example.betterfit.ui.home;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.betterfit.R;
+import com.example.betterfit.ui.contents.VideoAdapter;
+import com.example.betterfit.ui.contents.YouTubeVideos;
 import com.example.betterfit.ui.statistics.StatisticsFragment;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -17,6 +20,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
@@ -24,6 +29,8 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.Navigation;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.betterfit.ui.statistics.StatisticsViewModel;
 import com.github.mikephil.charting.charts.BarChart;
@@ -52,6 +59,9 @@ import com.google.android.gms.fitness.request.DataReadRequest;
 import com.google.android.gms.fitness.result.DataReadResponse;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;
@@ -63,23 +73,37 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Vector;
 import java.util.concurrent.TimeUnit;
 
 public class HomeFragment extends Fragment implements MyDialogFragment.OnInputListener {
 
     private static final String TAG = StatisticsFragment.class.getSimpleName();
     private static final int GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1;
+    private StatisticsViewModel statisticsViewModel;
+    Map<String,Integer> totalStep = new HashMap<String,Integer>();
 
-    private TextView date, step_count, goal_step, yester_comment, yesterday, yesterday_review, contents_title;
+    private TextView date, step_count, goal_step, yester_comment, yesterday, yesterday_review, contents_title, andmore;
     private TextView walking_cal, walking_km;
+    private TextView home_tag1, home_tag2, home_tag3;
     private String max_count;  // modified
     private int goal_count = 10000;  // Max(goal_count)값은 10000가 default - modified
-    private Button andmoreBtn;
     private HomeViewModel homeViewModel;
     Map<String, Integer> totalStep1 = new HashMap<String, Integer>();
     private TextView pattern;
     private BarChart barchart;
     private ProgressBar circle_progressBar;  // modified
+
+    int[] intArr = new int[7];
+    double dev = 0, devSqvSum = 0, avg, var, std1, std2;
+
+    RecyclerView recyclerView;
+    Vector<YouTubeVideos> youtubeVideos = new Vector<YouTubeVideos>();
+
+    /*private static final String API_KEY = "AIzaSyBiEWqzkWLAVs0RJsw7_WhZOUP3W5pn1BY";
+    private static String VIDEO1_ID = "KHOhjvYPZfg";
+    private static String VIDEO2_ID = "WSEtdciBPLM";
+    private static String VIDEO3_ID = "FVfIdxyRTHw";*/
 
     private final FitnessOptions mFitnessOptions = FitnessOptions.builder()
             .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
@@ -111,6 +135,7 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
                              @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         homeViewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+        statisticsViewModel = new ViewModelProvider(this).get(StatisticsViewModel.class);
         final ScrollView scrollView = (ScrollView) view.findViewById(R.id.scrollView);
         scrollView.post(new Runnable() {
             public void run() {
@@ -121,6 +146,14 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
         barchart = (BarChart)view.findViewById(R.id.chart1);
         //linechart = (LineChart)view.findViewById(R.id.chart1);
         pattern = (TextView) view.findViewById(R.id.pattern);
+
+        home_tag1 = (TextView) view.findViewById(R.id.home_tag1);
+        home_tag2 = (TextView) view.findViewById(R.id.home_tag2);
+        home_tag3 = (TextView) view.findViewById(R.id.home_tag3);
+
+        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager( new LinearLayoutManager(getContext()));
 
         // modified
         TextView goalText = (TextView) view.findViewById(R.id.goal_step);  // 이거 누르면 Dialog창 뜸 : 목표 걸음 수 재설정 창
@@ -146,6 +179,14 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
 
         contents_title = (TextView) view.findViewById(R.id.contents_title);
         contents_title.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_navigation_contents);
+            }
+        });
+
+        andmore = (TextView) view.findViewById(R.id.andmore);
+        andmore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(getView()).navigate(R.id.action_navigation_home_to_navigation_contents);
@@ -195,9 +236,11 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
         final SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
         final Calendar cal1 = Calendar.getInstance();
         final Calendar cal2 = Calendar.getInstance();
+        final Calendar cal3 = Calendar.getInstance();
         cal1.setTime(new Date());  // 오늘 날짜 받아옴
         cal2.setTime(new Date());  // 오늘 날짜 받아온 다음
         cal2.add(Calendar.DATE, -1);  // -1 하면 어제
+        cal3.setTime(new Date());
 
         final String formatDate = mFormat1.format(cal1.getTime());  // 오늘
         final String formatDate2 = mFormat1.format(cal2.getTime());  // 어제
@@ -260,6 +303,18 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
                 cal.add(Calendar.DATE, -34);
                 getStepGraph(mFitnessOptions, cal);
             }
+
+            cal3.setTime(new Date());
+            cal3.add(Calendar.DATE, -6);
+            getDailyStepCountsFromGoogleFit2(mFitnessOptions, cal3, 1); // last week
+            try {
+                Thread.sleep(50);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            getDailyStepCountsFromGoogleFit2(mFitnessOptions, cal3, 0); // this week
+            cal3.add(Calendar.DATE, +6);
+
 
         } else {
             Log.w(TAG, "Google Fit Permission failed");
@@ -611,7 +666,7 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
                 .build();
 
         GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
-                Objects.requireNonNull(getActivity()), fitnessOptions);
+                requireActivity(), fitnessOptions);
 
         Fitness.getHistoryClient(getActivity(), account)
                 .readData(readRequest)
@@ -837,53 +892,13 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
         barchart.setScaleEnabled(false);
         barchart.setPinchZoom(false);
         barchart.setDrawGridBackground(false);
-        barchart.animateY(800);
+        //barchart.animateY(800);
         barchart.setData(data);
         barchart.invalidate();
         barchart.setDescription(null);
         barchart.getLegend().setEnabled(false);
         //barchart.setVisibleXRangeMaximum(7);
 
-        ///////////////////////////////////////
-
-        /*LineDataSet set2 = new LineDataSet(entries, "걸음 수");
-        set2.setColor(Color.parseColor("#FE4901"));
-        set2.setLineWidth(2);
-        set2.setCircleRadius(6);
-        set2.setCircleColor(Color.parseColor("#FFA1B4DC"));
-        set2.setColor(Color.parseColor("#FFA1B4DC"));
-        set2.setDrawCircleHole(true);
-        set2.setDrawCircles(true);
-        set2.setDrawHorizontalHighlightIndicator(false);
-        set2.setDrawHighlightIndicators(false);
-        set2.setDrawValues(false);
-
-        LineData lineData = new LineData(set2);
-        linechart.setData(lineData);
-
-        XAxis xAxis2 = linechart.getXAxis();
-        xAxis2.setValueFormatter(new HomeFragment.MeanValueFormatter());
-        xAxis2.setPosition(XAxis.XAxisPosition.BOTTOM);
-        xAxis2.setTextColor(Color.BLACK);
-        xAxis2.setDrawGridLines(false);
-
-        YAxis yLAxis2 = linechart.getAxisLeft();
-        yLAxis2.setTextColor(Color.BLACK);
-
-        YAxis yRAxis2 = linechart.getAxisRight();
-        yRAxis2.setDrawLabels(false);
-        yRAxis2.setDrawAxisLine(false);
-        yRAxis2.setDrawGridLines(false);*/
-        /*yLAxis2.setAxisMinimum(0);
-
-        linechart.setScaleEnabled(false);
-        linechart.setPinchZoom(false);
-        linechart.setDrawGridBackground(false);
-        linechart.animateY(800);
-        linechart.invalidate();
-        linechart.setDescription(null);
-        linechart.getLegend().setEnabled(false);
-        //barchart.setVisibleXRangeMaximum(7);*/
     }
 
     class MeanValueFormatter extends ValueFormatter {
@@ -906,6 +921,226 @@ public class HomeFragment extends Fragment implements MyDialogFragment.OnInputLi
                 return "토";
             else // (value == 7)
                 return "일";
+        }
+    }
+
+    private void getDailyStepCountsFromGoogleFit2(FitnessOptions fitnessOptions, final Calendar cal, final int flag) {
+        // Create the start and end times for the date range
+        long endTime, startTime;
+        final DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
+        if(flag == 0){
+            cal.setTime(new Date());
+            cal.add(Calendar.DAY_OF_YEAR, +1);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            endTime = cal.getTimeInMillis();
+
+            cal.add(Calendar.DAY_OF_YEAR, -7);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            startTime = cal.getTimeInMillis();
+        }
+        else { // flag == 1 or 2
+            //cal.add(Calendar.DAY_OF_YEAR, +6); // cal.add(Calendar.MONTH, -12);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            endTime = cal.getTimeInMillis();
+
+            cal.add(Calendar.DAY_OF_YEAR, -7);
+            cal.set(Calendar.HOUR_OF_DAY, 0);
+            cal.set(Calendar.MINUTE, 0);
+            cal.set(Calendar.SECOND, 0);
+            startTime = cal.getTimeInMillis();
+        }
+
+        DataReadRequest readRequest = new DataReadRequest.Builder()
+                .aggregate(ESTIMATED_STEP_DELTAS, DataType.AGGREGATE_STEP_COUNT_DELTA)
+                .bucketByTime(1, TimeUnit.HOURS) // .bucketByTime(1, TimeUnit.HOURS)
+                .setTimeRange(startTime, endTime, TimeUnit.MILLISECONDS)
+                .build();
+
+        GoogleSignInAccount account = GoogleSignIn.getAccountForExtension(
+                requireActivity(), fitnessOptions);
+
+        Fitness.getHistoryClient(getActivity(), account)
+                .readData(readRequest)
+                .addOnSuccessListener(new OnSuccessListener<DataReadResponse>() {
+                    @Override public void onSuccess(DataReadResponse response) {
+                        statisticsViewModel.clearData();
+
+                        if (!response.getBuckets().isEmpty()) {
+                            for (Bucket bucket : response.getBuckets()) {
+                                String stepCount = "0";
+                                Date bucketStart = new Date(bucket.getStartTime(TimeUnit.MILLISECONDS));
+                                Date bucketEnd = new Date(bucket.getEndTime(TimeUnit.MILLISECONDS));
+                                /*Log.d(TAG, "Bucket start2 / end times2: " +  dateFormat.format(bucketStart)
+                                        + " - " + dateFormat.format(bucketEnd));*/
+
+                                List<DataSet> dataSets = bucket.getDataSets();
+                                for (DataSet set : dataSets) {
+                                    List<DataPoint> dataPoints = set.getDataPoints();
+                                    //Log.d(TAG, "dataset2: " + set.getDataType().getName());
+                                    for (DataPoint dp : dataPoints) {
+                                        //Log.d(TAG, "datapoint2: " + dp.getDataType().getName());
+                                        for (Field field : dp.getDataType().getFields()) {
+                                            stepCount = dp.getValue(field).toString();
+                                            //Log.d(TAG, "Field2: " + field.getName() + " Value2: " + dp.getValue(field));
+                                        }
+                                    }
+                                }
+
+                                //statisticsViewModel.addDailyStepCount(bucketStart, stepCount);
+                                // Add the data
+                                if (statisticsViewModel != null) {
+                                    statisticsViewModel.addDailyStepCount(bucketStart, stepCount);
+                                }
+                            }
+
+                            // Update current day step count
+                            //readDailyTotalSteps();
+                            compare(cal);
+
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override public void onFailure(@NonNull Exception e) {
+                        //Log.d(TAG, "OnFailure()", e);
+                    }
+                });
+    }
+
+    private void compare(Calendar cal) {
+
+        int check1 = 0, check2 = 0, check3 = 0;
+        int stepsum = 0, weeksum = 0;
+        int stepmax = 0;
+        int x = 0;
+
+        List<BarEntry> values = new ArrayList<BarEntry>();
+        SimpleDateFormat wf = new SimpleDateFormat("EE");
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMdd");
+        for (Map.Entry<Date, String> entry : statisticsViewModel.getFitnessData().entrySet()) {
+            stepsum += Integer.parseInt(entry.getValue());
+            check1++;
+            check2++;
+            check3++;
+            if(check3 == 24) {
+                switch(wf.format(entry.getKey())){
+                    case "일":
+                        x = 0;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "월":
+                        x = 10;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "화":
+                        x = 20;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "수":
+                        x = 30;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "목":
+                        x = 40;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "금":
+                        x = 50;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                    case "토":
+                        x = 60;
+                        values.add(new BarEntry(x, stepsum));
+                        break;
+                }
+                x++;
+            }
+            if(check1 == 24) {
+                //values.add(new BarEntry(Integer.parseInt(wf.format(entry.getKey())), stepsum));
+                //Log.d(TAG, "BarEntry2: " + df.format(entry.getKey()) + " stepsum2: " + stepsum);
+                //Log.d(TAG, "BarEntry2: " + values.toString());
+                if(check3 > 24) {
+                    values.add(new BarEntry(x, stepsum));
+                    x++;
+                    //Log.d(TAG, "BarEntry1: " + values.toString());
+                }
+                if(stepmax < stepsum) {
+                    stepmax = stepsum;
+                }
+                weeksum += stepsum;
+                stepsum = 0;
+                check1 = 0;
+            }
+
+            if(check2 == 168) {
+                totalStep.put(df.format(entry.getKey()), weeksum / 7);
+
+                avg = weeksum / 7;
+                for (int j = 0; j < 7; j++) {
+                    dev = (intArr[j] - avg);
+                    devSqvSum += Math.pow(dev, 2);
+                }
+                var = devSqvSum / 7;
+                std1 = Math.sqrt(var);
+            }
+        }
+
+        int fin1 = 0, fin2 = 0;
+        Calendar cal2 = Calendar.getInstance();
+        cal2.setTime(cal.getTime());
+        cal2.set(Calendar.HOUR_OF_DAY, 23);
+        cal2.set(Calendar.MINUTE, 0);
+        cal2.set(Calendar.SECOND, 0);
+        String fd = df.format(cal2.getTime());
+        Integer val1 = totalStep.get(fd);
+        cal2.add(Calendar.DATE, -7);
+        fd = df.format(cal2.getTime());
+        Integer val2 = totalStep.get(fd);
+
+        /*String fd = df.format(cal.getTime());
+        Integer val1 = totalStep2.get(Integer.parseInt(fd));
+        Integer val2 = totalStep2.get(Integer.parseInt(fd)-7);*/
+
+        if (val1 != null)
+            fin1 = val1; // this week step count
+        if (val2 != null)
+            fin2 = val2; // last week step count
+        Log.d(TAG, "fin1: " + fin1 + ", fin2: " + fin2 + ", fin2/5: " + fin2 / 5);
+
+        if(fin1 == 0) {
+            std2 = std1;
+        }
+
+        if(fin1 != 0) {
+            if (fin2 + std2 < fin1) { //more
+                // show more contents
+                home_tag1.setText("#많이 걸은 날 #다리 붓기 #피로 회복");
+
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/KHOhjvYPZfg\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", ""));
+                VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
+                recyclerView.setAdapter(videoAdapter);
+            } else if (fin2 - std2 > fin1) { //less
+                // show less contents
+                home_tag1.setText("#조금 걸은 날 #홈 트레이닝 #걷기의 좋은점");
+
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/WSEtdciBPLM\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", ""));
+                VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
+                recyclerView.setAdapter(videoAdapter);
+            } else { //similar
+                // show similar contents
+                home_tag1.setText("#비슷하게 걸은 날 #바른 걸음걸이 #자세 교정");
+
+                youtubeVideos.add(new YouTubeVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/FVfIdxyRTHw\" frameborder=\"0\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>", ""));
+                VideoAdapter videoAdapter = new VideoAdapter(youtubeVideos);
+                recyclerView.setAdapter(videoAdapter);
+            }
         }
     }
 
